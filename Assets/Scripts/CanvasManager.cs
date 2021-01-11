@@ -1,16 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
-    private Button[] buttons;
+    [SerializeField]private Button[] buttons;
     [SerializeField] private string[] animations;
-    private Button settingsButton;
+    [SerializeField]private Button settingsButton;
     [SerializeField] private GameObject settings;
-     private Slider soundSlider;
+    [SerializeField]private Slider soundSlider;
     private Animator characterAnimator;
     private string currentAnimation="idle";
     void Start()
@@ -31,9 +30,9 @@ public class CanvasManager : MonoBehaviour
         {
             Debug.Log(i);
             int j = i;
-            buttons[i].clicked+=()=>setAnimationAndMusic(animations[j]);
+            buttons[i].onClick.AddListener(()=>setAnimationAndMusic(animations[j]));
         }
-        settingsButton.clicked+=()=>changeSettingsActive();
+        settingsButton.onClick.AddListener(()=>changeSettingsActive());
     }
 
     public void callVolumeChange()
@@ -47,7 +46,7 @@ public class CanvasManager : MonoBehaviour
     
     private void setAnimationAndMusic(string animation)
     {
-        if (!currentAnimation.Equals(animation))
+        if (!currentAnimation.Equals(animation) && !MusicManager.musicManager.changing)
         {
             characterAnimator.SetTrigger(animation);
             MusicManager.musicManager.playSong(animation);

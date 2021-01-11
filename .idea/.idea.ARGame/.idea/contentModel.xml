@@ -7,8 +7,8 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="CanvasManager.cs" t="Include" />
+          <e p="CustomTrackableEvent.cs" t="Include" />
           <e p="MusicManager.cs" t="Include" />
-          <e p="PlacedEvent.cs" t="Include" />
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />
